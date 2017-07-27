@@ -83,11 +83,11 @@ while ($row = $sql->fetch_array()) {
             <a class="mobile-btn" href="#" title="Hide navigation">Esconder Navegação</a>
 
             <ul id="nav" class="nav">
-                <li class="current"><a class="smoothscroll" href="#home">Home</a></li>
-                <li><a class="smoothscroll" onclick="$('html,body').animate({scrollTop: $('.second').offset().top}, 'slow');">Perfil</a></li>
-                <li><a class="smoothscroll" href="#resume">Currículo</a></li>
-                <li><a class="smoothscroll" href="#portfolio">Disciplinas</a></li>
-                <li><a class="smoothscroll" href="#contact">Contato</a></li>
+                <li class="current"><a class="smoothscroll" onclick="$('html,body').animate({scrollTop: $('#home').offset().top}, 'slow');">Home</a></li>
+                <li><a class="smoothscroll" onclick="$('html,body').animate({scrollTop: $('#about').offset().top}, 'slow');">Perfil</a></li>
+                <li><a class="smoothscroll" onclick="$('html,body').animate({scrollTop: $('#resume').offset().top}, 'slow');">Currículo</a></li>
+                <li><a class="smoothscroll" onclick="$('html,body').animate({scrollTop: $('#portfolio').offset().top}, 'slow');">Disciplinas</a></li>
+                <li><a class="smoothscroll" onclick="$('html,body').animate({scrollTop: $('#contact').offset().top}, 'slow');">Contato</a></li>
             </ul> <!-- end #nav -->
 
         </nav> <!-- end #nav-wrap -->
