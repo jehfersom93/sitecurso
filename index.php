@@ -1,8 +1,29 @@
-﻿<!DOCTYPE html>
-<-- Teste -->
+﻿<?php
+include_once './Util/Connect.php';
+$idProfessor = $_GET['id'];
+
+$sql = $mysqli->query("SELECT * FROM professor WHERE id=" . $idProfessor);
+while ($row = $sql->fetch_array()) {
+    $nomeProfessor = $row['nomeProfessor'];
+    $facebookProfessor = $row['facebookProfessor'];
+    $twitterProfessor = $row['twitterProfessor'];
+    $googleProfessor = $row['googleProfessor'];
+    $instagramProfessor = $row['instagramProfessor'];
+    $urlFotoProfessor = $row['urlFotoProfessor'];
+    $urlCapaProfessor = $row['urlCapaProfessor'];
+    $cssStyleProfessor = $row['cssStyleProfessor'];
+    $urlCurriculumProfessor = $row['urlCurriculumProfessor'];
+    $textoSobreProfessor = $row['textoSobreProfessor'];
+    $cidadeProfessor = $row['cidadeProfessor'];
+    $telefoneProfessor = $row['telefoneProfessor'];
+    $emailProfessor = $row['emailProfessor'];
+}
+?>
+
+<!DOCTYPE html>
 <head>
     <meta charset="utf-8">
-    <title>Felipe Ghisleni Freitas</title>
+    <title><?php echo $nomeProfessor ?></title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -14,11 +35,30 @@
 ================================================== -->
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/layout.css">
+    <?php
+    if (!is_null($cssStyleProfessor) || !empty($cssStyleProfessor)) {
+        echo "<link rel='stylesheet' href='css/cores/" . $cssStyleProfessor . "'>";
+    }
+    ?>
     <link rel="stylesheet" href="css/media-queries.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <style>
+        header {
+            <?php
+            if (!is_null($urlCapaProfessor) || !empty($urlCapaProfessor)) {
+                echo "background: #161415 url(" . $urlCapaProfessor . ") no-repeat top center;";
+            } else {
+                echo "background: #161416 url(images/header-background_1.jpg) no-repeat top center;";
+            }
+            ?>
+        }
+    </style>
+
+
 
     <!-- Script
     ================================================== -->
@@ -39,15 +79,14 @@
 
         <nav id="nav-wrap">
 
-            <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
-            <a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
+            <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Mostrar Navegação</a>
+            <a class="mobile-btn" href="#" title="Hide navigation">Esconder Navegação</a>
 
             <ul id="nav" class="nav">
                 <li class="current"><a class="smoothscroll" href="#home">Home</a></li>
-                <li><a class="smoothscroll" href="#about">Perfil</a></li>
+                <li><a class="smoothscroll" onclick="$('html,body').animate({scrollTop: $('.second').offset().top}, 'slow');">Perfil</a></li>
                 <li><a class="smoothscroll" href="#resume">Currículo</a></li>
                 <li><a class="smoothscroll" href="#portfolio">Disciplinas</a></li>
-                <li><a class="smoothscroll" href="#testimonials">Projetos</a></li>
                 <li><a class="smoothscroll" href="#contact">Contato</a></li>
             </ul> <!-- end #nav -->
 
@@ -55,13 +94,23 @@
 
         <div class="row banner">
             <div class="banner-text">
-                <h1 class="responsive-headline">Felipe Ghisleni Freitas</h1>
+                <h1 class="responsive-headline"><?php echo $nomeProfessor ?></h1>
                 <hr />
                 <ul class="social">
-                    <li><a href="https://www.facebook.com/felipeghisleni"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="https://twitter.com/felipeghisleni"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="https://plus.google.com/104919543958676590281"><i class="fa fa-google-plus"></i></a></li>
-                    <li><a href="https://www.instagram.com/felipeghislenif/"><i class="fa fa-instagram"></i></a></li>
+                    <?php
+                    if (!is_null($facebookProfessor) || !empty($facebookProfessor)) {
+                        echo "<li><a href='" . $facebookProfessor . "' target='_blank'><i class='fa fa-facebook'></i></a></li>";
+                    }
+                    if (!is_null($twitterProfessor) || !empty($twitterProfessor)) {
+                        echo "<li><a href='" . $twitterProfessor . "' target='_blank'><i class='fa fa-twitter'></i></a></li>";
+                    }
+                    if (!is_null($googleProfessor) || !empty($googleProfessor)) {
+                        echo "<li><a href='" . $googleProfessor . "' target='_blank'><i class='fa fa-google-plus'></i></a></li>";
+                    }
+                    if (!is_null($instagramProfessor) || !empty($instagramProfessor)) {
+                        echo "<li><a href='" . $instagramProfessor . "' target='_blank'><i class='fa fa-instagram'></i></a></li>";
+                    }
+                    ?>
                 </ul>
             </div>
         </div>
@@ -81,7 +130,7 @@
 
             <div class="three columns">
 
-                <img class="profile-pic"  src="images/profilepicfelipe.jpg" alt="" />
+                <img class="profile-pic"  src="<?php echo $urlFotoProfessor ?>" alt="" />
 
             </div>
 
@@ -89,11 +138,7 @@
 
                 <h2>Sobre </h2>
 
-                <p> Coordenador e Professor do Curso Superior de Tecnologia em Análise 
-                    e Desenvolvimento de Sistemas, Coordenador do Curso Superior de Tecnologia em Sis-
-                    temas para Internet ambos no grupo educacional CNEC; </p>
-                <p> Foi professor no curso de Ciência da Computação na URI de Santiago, e tambem foi professor do curso de Ciências Contábeis; 
-                </p>
+                <?php echo $textoSobreProfessor ?>
 
                 <div class="row">
 
@@ -101,10 +146,10 @@
 
                         <h2>Contato</h2>
                         <p class="address">
-                            <span>Felipe Ghisleni Freitas</span><br>
-                            <span> Santo Ângelo, RS</span><br>
-                            <span>+55 55 98145-4022  </span><i class="fa fa-whatsapp"></i><br>
-                            <span>felipeghisleni@gmail.com</span>
+                            <span><?php echo $nomeProfessor ?></span><br>
+                            <span> <?php echo $cidadeProfessor ?></span><br>
+                            <span><?php echo $telefoneProfessor ?>  </span><i class="fa fa-whatsapp"></i><br>
+                            <span><?php echo $emailProfessor ?></span>
                         </p>
 
                     </div>
@@ -131,52 +176,25 @@
 
             <div class="nine columns main-col">
 
-                <div class="row item">
+                <?php
+                $sql = $mysqli->query("SELECT formacao.nomeFormacao FROM formacao INNER JOIN professorformacao ON professorformacao.idFormacao=formacao.id WHERE professorformacao.idProfessor=" . $idProfessor);
+                while ($row = $sql->fetch_array()) {
+                    echo "<div class='row item'>";
+                    echo "<div class='twelve columns'>";
+                    echo "<h1><i class='fa fa-circle' aria-hidden='true'></i> " . $row['nomeFormacao'] . "</h1>";
+                    echo "</div>";
+                    echo "</div>";
+                }
+                ?>
 
-                    <div class="twelve columns">
-                        <h1><i class="fa fa-circle" aria-hidden="true"></i> Bacharel em Informática</h1>
-                    </div>
+                <div>
+                    <h1>
+                        <i class="fa fa-address-card-o" aria-hidden="true"></i><a href="<?php echo $urlCurriculumProfessor ?>"> Currículo Lattes</a>
+                    </h1>
+                </div>
+            </div> <!-- item end -->
 
-                </div> <!-- item end -->
-
-                <div class="row item">
-
-                    <div class="twelve columns">
-
-                        <h1><i class="fa fa-circle" aria-hidden="true"></i> Bacharel em Administração GNA - Gestão de Negócios Agroindustriais</h1>
-
-                    </div>
-
-
-
-                    <div class="twelve columns">
-
-                        <h1><i class="fa fa-circle" aria-hidden="true"></i> Pós graduado em Docência Universitária</h1>
-
-                    </div>
-
-                    <div class="twelve columns">
-
-                        <h1><i class="fa fa-circle" aria-hidden="true"></i> Mestrando em desenvolvimento e Políticas Públicas Universidade Federal da Fronteira Sul</h1>
-
-                    </div>
-
-                    <div class="twelve columns">
-
-                        <h1><i class="fa fa-circle" aria-hidden="true"></i> Mestre em Gestão Comercial pela Faculdade de Economia da Universidade do Porto</h1>
-
-                    </div>
-                    <br><br><br><br>
-                    <div>
-                        <h1>
-                            <i class="fa fa-address-card-o" aria-hidden="true"></i><a href="http://lattes.cnpq.br/6100546550001070"> Currículo Lattes</a>
-                        </h1>
-                    </div>
-                </div> <!-- item end -->
-
-            </div> <!-- main-col end -->
-
-        </div> <!-- End Education -->
+        </div> <!-- main-col end -->
 
 
         <!-- Work
@@ -193,18 +211,60 @@
 
                     <div class="twelve columns">
 
-                        <h3>CNEC - IESA/ SANTO ANGELO - RS</h3>
-                        <p class="info">Professor - Coordenador <span>&bull;</span> <em class="date">Janeiro/2016 - Atual</em></p>
+                        <?php
+                        $sql = $mysqli->query("SELECT instituicao.id, instituicao.nomeInstituicao, professorinstituicao.cargoProfessor, professorinstituicao.dataInicial, professorinstituicao.dataFinal FROM professorinstituicao INNER JOIN instituicao ON instituicao.id=professorinstituicao.idInstituicao WHERE professorinstituicao.idProfessor=" . $idProfessor);
+                        while ($row = $sql->fetch_array()) {
+                            $idInstituicao = $row['id'];
 
-                        <p>
-                            <i class="fa fa-circle" aria-hidden="true"></i> Pesquisa e desenvolvimento.
-                        </p>
-                        <p>
-                            <i class="fa fa-circle" aria-hidden="true"></i> Ensino, Curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas, Nível: Graduação.
-                        </p>
-                        <p>
-                            <i class="fa fa-circle" aria-hidden="true"></i> Direção, administração e coordenador do Curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas.
-                        </p>
+                            setlocale(LC_ALL, 'ptb');
+                            $dataInicial = $row['dataInicial'];
+                            if (!is_null($row['dataFinal']) || !empty($row['dataFinal'])) {
+                                $dataFinal = ucfirst(utf8_encode(strftime("%B de %Y", strtotime($row['dataFinal']))));
+                            } else {
+                                $dataFinal = "Atual";
+                            }
+
+                            setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+                            echo "<h3>" . $row['nomeInstituicao'] . "</h3>";
+                            echo "<p class='info'>" . $row['cargoProfessor'] . " <span>&bull;</span> <em class='date'>" . ucfirst(utf8_encode(strftime("%B de %Y", strtotime($dataInicial)))) . " - " . $dataFinal . "</em></p>";
+                        }
+
+                        $sql = $mysqli->query("SELECT descricaoAtividade FROM professoratividade WHERE idProfessor=" . $idProfessor . " AND idInstituicao=" . $idInstituicao);
+                        while ($row = $sql->fetch_array()) {
+                            echo "<p>";
+                            echo "<i class='fa fa-circle' aria-hidden='true'></i> " . $row['descricaoAtividade'];
+                            echo "</p>";
+                        }
+                        ?>
+
+                    </div>
+
+                </div> <!-- item end -->
+            </div>
+        </div>
+
+        <!-- Projetos
+        ----------------------------------------------- -->
+        <div class="row projetos">
+
+            <div class="three columns header-col">
+                <h1><i class="fa fa-paperclip" aria-hidden="true"></i><span>Projetos</span></h1>
+            </div>
+
+            <div class="nine columns main-col">
+
+                <div class="row item">
+
+                    <div class="twelve columns">
+
+                        <?php
+                        $sql = $mysqli->query("SELECT descricaoProjeto FROM professorprojeto WHERE idProfessor=" . $idProfessor);
+                        while ($row = $sql->fetch_array()) {
+                            echo "<p>";
+                            echo "<i class='fa fa-circle' aria-hidden='true'></i> " . $row['descricaoProjeto'];
+                            echo "</p>";
+                        }
+                        ?>
 
                     </div>
 
@@ -222,218 +282,135 @@
 
             <div class="twelve columns collapsed">
 
-                <h1>Disciplinas do professor.</h1>
+                <h1>Disciplinas do professor</h1>
 
                 <!-- portfolio-wrapper -->
                 <div id="portfolio-wrapper" class="bgrid-quarters s-bgrid-thirds cf">
 
-                    <div class="columns portfolio-item">
-                        <div class="item-wrap">
+                    <?php
+                    $sql = $mysqli->query("SELECT disciplina.nomeDisciplina, disciplina.descricaoDisciplina, disciplina.urlFotoDisciplina, disciplina.urlThumbDisciplina, disciplina.tagsDisciplina, disciplina.urlSiteDisciplina FROM disciplina INNER JOIN professordisciplina ON professordisciplina.idDisciplina=disciplina.id WHERE professordisciplina.idProfessor=" . $idProfessor);
+                    $i = 0;
+                    while ($row = $sql->fetch_array()) {
+                        $nomeDisciplina = $row['nomeDisciplina'];
+                        $descricaoDisciplina = $row['descricaoDisciplina'];
+                        $tagsDisciplina = $row['tagsDisciplina'];
+                        $urlFotoDisciplina = $row['urlFotoDisciplina'];
+                        $urlThumbDisciplina = $row['urlThumbDisciplina'];
+                        $urlSiteDisciplina = $row['urlSiteDisciplina'];
+                        echo "<div class='columns portfolio-item'>";
+                        echo "<div class='item-wrap'>";
+                        echo "<a href='#modal-" . $i . "' title=" . $nomeDisciplina . ">";
+                        echo "<img alt='' src='" . $urlThumbDisciplina . "'>";
+                        echo "<div class='overlay'>";
+                        echo "<div class='portfolio-item-meta'>";
+                        echo "<h5>" . $nomeDisciplina . "</h5>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "<div class='link-icon'><i style='position:absolute; right: 20px; bottom: 00px; top: 55px; left: 60px' class='icon-plus'></i></div>";
+                        echo "</a>";
+                        echo "</div>";
+                        echo "</div>";
+                        $i++;
+                    }
+                    ?>
 
-                            <a href="#modal-01" title="">
-                                <img alt="" src="images/logos/logo_arq_e_org_de_computadores.jpg">
-                                <div class="overlay">
-                                    <div class="portfolio-item-meta">
-                                        <h5>Arquitetura e Organizaçao de Computadores</h5>
+                </div>
+                <!-- Modal Popup
+                     --------------------------------------------------------------- -->
+
+                <?php
+                $j = 0;
+
+                if (is_null($tagsDisciplina) || empty($tagsDisciplina)) {
+                    $tagsDisciplina = "Sem tags";
+                }
+
+                while ($j <= $i) {
+                    echo "<div id='modal-" . $j . "' class='popup-modal mfp-hide'>";
+                    echo "<img class='scale-with-grid' src='" . $urlFotoDisciplina . "' alt='' />";
+                    echo "<div class='description-box'>";
+                    echo "<h4>" . $nomeDisciplina . "</h4>";
+                    echo "<p>" . $descricaoDisciplina . "</p>";
+                    echo "<span class='categories'><i class='fa fa-tag'></i>" . $tagsDisciplina . "</span>";
+                    echo "</div>";
+                    echo "<div class='link-box'>";
+                    echo "<a href='" . $urlSiteDisciplina . "' target='_blank'>Site</a>";
+                    echo "<a class='popup-modal-dismiss'>Fechar</a>";
+                    echo "</div>";
+                    echo "</div>";
+                    $j++;
+                }
+                ?>
+
+                </section> <!-- Portfolio Section End-->
+
+
+                <!-- Contact Section
+                ================================================== -->
+                <section id="contact">
+
+                    <div class="row section-head">
+
+                        <div class="two columns header-col">
+
+                            <h1><span> Entrar em contato.</span></h1>
+
+                        </div>
+
+                        <div class="ten columns">
+
+                            <p class="lead"> Preencha os campos abaixo para entrar em contato com o professor.</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="eight columns">
+
+                            <!-- form -->
+                            <form action="" method="post" id="contactForm" name="contactForm">
+                                <fieldset>
+
+                                    <div>
+                                        <label for="contactName"> Nome <span class="required">*</span></label>
+                                        <input type="text" value="" size="15" id="contactName" name="contactName">
                                     </div>
-                                </div>
-                                <div class="link-icon"><i style="position:absolute; right: 20px; bottom: 00px; top: 55px; left: 60px" class="icon-plus"></i></div>
-                            </a>
 
-                        </div>
-                    </div> <!-- item end -->
-
-                    <div class="columns portfolio-item">
-                        <div class="item-wrap">
-
-                            <a href="#modal-02" title="">
-                                <img alt="" src="images/logos/logo_arq_e_org_de_computadores.jpg">
-                                <div class="overlay">
-                                    <div class="portfolio-item-meta">
-                                        <h5>Economia</h5>
+                                    <div>
+                                        <label for="contactEmail"> Email <span class="required">*</span></label>
+                                        <input type="text" value="" size="15" id="contactEmail" name="contactEmail">
                                     </div>
-                                </div>
-                                <div class="link-icon"><i style="position:absolute; right: 20px; bottom: 00px; top: 55px; left: 60px" class="icon-plus"></i></div>
-                            </a>
 
-                        </div>
-                    </div> <!-- item end -->
-
-                    <div class="columns portfolio-item">
-                        <div class="item-wrap">
-
-                            <a href="#modal-03" title="">
-                                <img alt="" src="images/logos/logo_engenharia_software.jpg">
-                                <div class="overlay">
-                                    <div class="portfolio-item-meta">
-                                        <h5>Engenharia de Software</h5>
+                                    <div>
+                                        <label for="contactSubject"> Assunto </label>
+                                        <input type="text" value="" size="15" id="contactSubject" name="contactSubject">
                                     </div>
-                                </div>
-                                <div class="link-icon"><i style="position:absolute; right: 20px; bottom: 00px; top: 55px; left: 60px" class="icon-plus"></i></div>
-                            </a>
 
-                        </div>
-                    </div> <!-- item end -->
-
-                    <div class="columns portfolio-item">
-                        <div class="item-wrap">
-
-                            <a href="#modal-04" title="">
-                                <img alt="" src="images/logos/logo_sistemas_operacionais.jpg">
-                                <div class="overlay">
-                                    <div class="portfolio-item-meta">
-                                        <h5>Sistemas Operacionais</h5>
+                                    <div>
+                                        <label for="contactMessage"> Mensagem <span class="required">*</span></label>
+                                        <textarea cols="30" rows="10" id="contactMessage" name="contactMessage"></textarea>
                                     </div>
-                                </div>
-                                <div class="link-icon"><i style="position:absolute; right: 20px; bottom: 00px; top: 55px; left: 60px" class="icon-plus"></i></div>
-                            </a>
 
-                        </div>
-                    </div> <!-- item end -->
+                                    <div>
+                                        <button class="submit">Enviar</button>
+                                        <span id="image-loader">
+                                            <img alt="" src="images/loader.gif">
+                                        </span>
+                                    </div>
 
-                    <!-- Modal Popup
-                         --------------------------------------------------------------- -->
+                                </fieldset>
+                            </form> <!-- Form End -->
 
-                    <div id="modal-01" class="popup-modal mfp-hide">
-
-                        <img class="scale-with-grid" src="images/portfolio/modals/arq-comput.jpg" alt="" />
-
-                        <div class="description-box">
-                            <h4>Arquitetura e Organização de Computadores</h4>
-                            <p>É o projeto conceitual e fundamental da estrutura operacional de um sistema computacional.</p>
-                            <span class="categories"><i class="fa fa-tag"></i>Branding, Webdesign</span>
-                        </div>
-
-                        <div class="link-box">
-                            <a href="#">Site</a>
-                            <a class="popup-modal-dismiss">Fechar</a>
-                        </div>
-
-                    </div><!-- modal-01 End -->
-
-                    <div id="modal-02" class="popup-modal mfp-hide">
-
-                        <img class="scale-with-grid" src="images/portfolio/modals/economia.jpg" alt="" />
-
-                        <div class="description-box">
-                            <h4>Economia</h4>
-                            <p>É a ciência social que estuda a produção, distribuição, e consumo de bens e serviços.</p>
-                        </div>
-
-                        <div class="link-box">
-                            <a href="http://kraft.ads.cnecsan.edu.br/~felipe/economia/">Site</a>
-                            <a class="popup-modal-dismiss">Fechar</a>
-                        </div>
-
-                    </div><!-- modal-02 End -->
-
-                    <div id="modal-03" class="popup-modal mfp-hide">
-
-                        <img class="scale-with-grid" src="images/portfolio/modals/eng-software.jpg" alt="" />
-
-                        <div class="description-box">
-                            <h4>Engenharia de Software</h4>
-                            <p>É a área responsável pelo estabelecimento de técnicas e práticas para o desenvolvimento de software cobrindo uma ampla área de aplicações e diferentes tipos de dispositivos.</p>
-                        </div>
-
-                        <div class="link-box">
-                            <a href="http://kraft.ads.cnecsan.edu.br/~felipe/engenharia_de_software/">Site</a>
-                            <a class="popup-modal-dismiss">Fechar</a>
-                        </div>
-
-                    </div><!-- modal-03 End -->
-
-                    <div id="modal-04" class="popup-modal mfp-hide">
-
-                        <img class="scale-with-grid" src="images/portfolio/modals/sis-operacionais.jpg" alt="" />
-
-                        <div class="description-box">
-                            <h4>Sistemas Operacionais</h4>
-                            <p>É uma coleção de programas que inicializam o hardware do computador. </p>
-                        </div>
-
-                        <div class="link-box">
-                            <a href="http://kraft.ads.cnecsan.edu.br/~felipe/sistemas_operacionais/">Site</a>
-                            <a class="popup-modal-dismiss">Fechar</a>
-                        </div>
-
-                    </div><!-- modal-04 End -->
-
-                    </section> <!-- Portfolio Section End-->
-
-                    <section >  <!-- usar id="testimonials" nesta section(CSS); -->
-
-
-
-                    </section> <!-- Testimonials Section End-->
-
-
-                    <!-- Contact Section
-                    ================================================== -->
-                    <section id="contact">
-
-                        <div class="row section-head">
-
-                            <div class="two columns header-col">
-
-                                <h1><span> Entrar em contato.</span></h1>
-
-                            </div>
-
-                            <div class="ten columns">
-
-                                <p class="lead"> Preencha os campos abaixo para entrar em contato com o professor.</p>
-
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-
-                            <div class="eight columns">
-
-                                <!-- form -->
-                                <form action="" method="post" id="contactForm" name="contactForm">
-                                    <fieldset>
-
-                                        <div>
-                                            <label for="contactName"> Nome <span class="required">*</span></label>
-                                            <input type="text" value="" size="15" id="contactName" name="contactName">
-                                        </div>
-
-                                        <div>
-                                            <label for="contactEmail"> Email <span class="required">*</span></label>
-                                            <input type="text" value="" size="15" id="contactEmail" name="contactEmail">
-                                        </div>
-
-                                        <div>
-                                            <label for="contactSubject"> Assunto </label>
-                                            <input type="text" value="" size="15" id="contactSubject" name="contactSubject">
-                                        </div>
-
-                                        <div>
-                                            <label for="contactMessage"> Mensagem <span class="required">*</span></label>
-                                            <textarea cols="30" rows="10" id="contactMessage" name="contactMessage"></textarea>
-                                        </div>
-
-                                        <div>
-                                            <button class="submit">Enviar</button>
-                                            <span id="image-loader">
-                                                <img alt="" src="images/loader.gif">
-                                            </span>
-                                        </div>
-
-                                    </fieldset>
-                                </form> <!-- Form End -->
-
-                                <!-- contact-warning -->
-                                <div id="message-warning"> Erro </div>
-                                <!-- contact-success -->
-                                <div id="message-success">
-                                    <i class="fa fa-check"></i> Mensagem enviada!<br>
-                                </div>
+                            <!-- contact-warning -->
+                            <div id="message-warning"> Erro </div>
+                            <!-- contact-success -->
+                            <div id="message-success">
+                                <i class="fa fa-check"></i> Mensagem enviada!<br>
                             </div>
                         </div>
+                    </div>
                 </section> <!-- Contact Section End-->
 
 
@@ -446,19 +423,29 @@
                         <div class="twelve columns">
 
                             <ul class="social-links">
-                                <li><a href="https://www.facebook.com/JefersonSantosRS"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="https://twitter.com/J_Rodrigues14"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="https://plus.google.com/112652298338135755940"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="https://www.instagram.com/jehfersom93/"><i class="fa fa-instagram"></i></a></li>
+                                <?php
+                                if (!is_null($facebookProfessor) || !empty($facebookProfessor)) {
+                                    echo "<li><a href='" . $facebookProfessor . "' target='_blank'><i class='fa fa-facebook'></i></a></li>";
+                                }
+                                if (!is_null($twitterProfessor) || !empty($twitterProfessor)) {
+                                    echo "<li><a href='" . $twitterProfessor . "' target='_blank'><i class='fa fa-twitter'></i></a></li>";
+                                }
+                                if (!is_null($googleProfessor) || !empty($googleProfessor)) {
+                                    echo "<li><a href='" . $googleProfessor . "' target='_blank'><i class='fa fa-google-plus'></i></a></li>";
+                                }
+                                if (!is_null($instagramProfessor) || !empty($instagramProfessor)) {
+                                    echo "<li><a href='" . $instagramProfessor . "' target='_blank'><i class='fa fa-instagram'></i></a></li>";
+                                }
+                                ?>
                             </ul>
                             <ul class="copyright">
                                 <li>©2017 Todos os direitos reservados| CNEC-IESA Santo Ângelo. </li>
-                                <li>Desenvolvido por <a title="Styleshout" href="http://kraft.ads.cnecsan.edu.br/~jefersonrodrigues/"> Jeferson Rodrigues</a></li>   
+                                <li>Desenvolvido por <a title="Styleshout" href="http://kraft.ads.cnecsan.edu.br/~jefersonrodrigues/" target='_blank'>Jeferson Rodrigues</a> e <a title="Styleshout" href="http://kraft.ads.cnecsan.edu.br/~matheuscavallini/" target='_blank'>Matheus Cavallini</a></li>   
                             </ul>
 
                         </div>
 
-                        <div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="icon-up-open"></i></a></div>
+                        <div id="go-top"><a class="smoothscroll" title="Voltar para o topo" href="#home"><i class="icon-up-open"></i></a></div>
 
                     </div>
 

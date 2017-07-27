@@ -1,0 +1,57 @@
+body { 
+    background: #65204f; 
+}
+
+ul#nav li.current a { 
+    color: #da60b3; 
+}
+
+header .social li a:hover { color: #da60b3; }
+header .scrolldown a:hover { color: #da60b3; }
+
+#about {
+    background: #da60b3;
+}
+#about p { color: white; }
+#about a:hover, #about a:focus { color: #d1d1d1; }
+
+#resume a, #resume a:visited  { color: #da60b3; }
+
+#resume h1 span {
+   border-bottom: 3px solid #da60b3;
+   padding-bottom: 6px;
+}
+
+.popup-modal a:hover {	color: #da60b3; }
+
+#contact {
+    background: #832665;
+    color: white;
+}
+#contact a, #contact a:visited  { color: #d1d1d1; }
+
+#contact input:focus,
+#contact textarea:focus,
+#contact select:focus {
+	color: #fff;
+	background-color: #ca3099;
+}
+
+#contact span.required {
+	color: #d1d1d1;
+}
+
+#message-warning { color: #D72828; }
+#message-success { color: #da60b3; }
+
+footer {
+    color: white;
+}
+
+footer a, footer a:visited { color: #d1d1d1; }
+
+footer .copyright li:before {
+    color: white;
+}
+
+#go-top a:hover { background-color: #da60b3; }
