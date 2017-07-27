@@ -1,6 +1,6 @@
 ﻿<?php
 include_once './Util/Connect.php';
-$idProfessor = $_GET['id'];
+$idProfessor = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
 $sql = $mysqli->query("SELECT * FROM professor WHERE id=" . $idProfessor);
 while ($row = $sql->fetch_array()) {
