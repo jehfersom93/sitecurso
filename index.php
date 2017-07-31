@@ -138,17 +138,21 @@ while ($row = $sql->fetch_array()) {
 
                 <h2>Sobre </h2>
 
-                <?php echo $textoSobreProfessor ?>
+                <p><?php echo $textoSobreProfessor ?></p>
 
                 <div class="row">
 
                     <div class="columns contact-details">
-
+                        <br>
                         <h2>Contato</h2>
                         <p class="address">
                             <span><?php echo $nomeProfessor ?></span><br>
                             <span> <?php echo $cidadeProfessor ?></span><br>
-                            <span><?php echo $telefoneProfessor ?>  </span><i class="fa fa-whatsapp"></i><br>
+                            <?php
+                            if (!is_null($telefoneProfessor) || !empty($telefoneProfessor)) {
+                                echo "<span>" . $telefoneProfessor . " </span><i class='fa fa-whatsapp'></i><br>";
+                            }
+                            ?>
                             <span><?php echo $emailProfessor ?></span>
                         </p>
 
@@ -177,7 +181,7 @@ while ($row = $sql->fetch_array()) {
             <div class="nine columns main-col">
 
                 <?php
-                $sql = $mysqli->query("SELECT formacao.nomeFormacao FROM formacao INNER JOIN professorformacao ON professorformacao.idFormacao=formacao.id WHERE professorformacao.idProfessor=" . $idProfessor);
+                $sql = $mysqli->query("SELECT formacao.nomeFormacao FROM formacao INNER JOIN professor_formacao ON professor_formacao.idFormacao=formacao.id WHERE professor_formacao.idProfessor=" . $idProfessor);
                 while ($row = $sql->fetch_array()) {
                     echo "<div class='row item'>";
                     echo "<div class='twelve columns'>";
@@ -212,7 +216,7 @@ while ($row = $sql->fetch_array()) {
                     <div class="twelve columns">
 
                         <?php
-                        $sql = $mysqli->query("SELECT instituicao.id, instituicao.nomeInstituicao, professorinstituicao.cargoProfessor, professorinstituicao.dataInicial, professorinstituicao.dataFinal FROM professorinstituicao INNER JOIN instituicao ON instituicao.id=professorinstituicao.idInstituicao WHERE professorinstituicao.idProfessor=" . $idProfessor);
+                        $sql = $mysqli->query("SELECT instituicao.id, instituicao.nomeInstituicao, professor_instituicao.cargoProfessor, professor_instituicao.dataInicial, professor_instituicao.dataFinal FROM professor_instituicao INNER JOIN instituicao ON instituicao.id=professor_instituicao.idInstituicao WHERE professor_instituicao.idProfessor=" . $idProfessor);
                         while ($row = $sql->fetch_array()) {
                             $idInstituicao = $row['id'];
 
@@ -229,7 +233,7 @@ while ($row = $sql->fetch_array()) {
                             echo "<p class='info'>" . $row['cargoProfessor'] . " <span>&bull;</span> <em class='date'>" . ucfirst(utf8_encode(strftime("%B de %Y", strtotime($dataInicial)))) . " - " . $dataFinal . "</em></p>";
                         }
 
-                        $sql = $mysqli->query("SELECT descricaoAtividade FROM professoratividade WHERE idProfessor=" . $idProfessor . " AND idInstituicao=" . $idInstituicao);
+                        $sql = $mysqli->query("SELECT descricaoAtividade FROM professor_atividade WHERE idProfessor=" . $idProfessor . " AND idInstituicao=" . $idInstituicao);
                         while ($row = $sql->fetch_array()) {
                             echo "<p>";
                             echo "<i class='fa fa-circle' aria-hidden='true'></i> " . $row['descricaoAtividade'];
@@ -258,7 +262,7 @@ while ($row = $sql->fetch_array()) {
                     <div class="twelve columns">
 
                         <?php
-                        $sql = $mysqli->query("SELECT descricaoProjeto FROM professorprojeto WHERE idProfessor=" . $idProfessor);
+                        $sql = $mysqli->query("SELECT descricaoProjeto FROM professor_projeto WHERE idProfessor=" . $idProfessor);
                         while ($row = $sql->fetch_array()) {
                             echo "<p>";
                             echo "<i class='fa fa-circle' aria-hidden='true'></i> " . $row['descricaoProjeto'];
@@ -288,7 +292,7 @@ while ($row = $sql->fetch_array()) {
                 <div id="portfolio-wrapper" class="bgrid-quarters s-bgrid-thirds cf">
 
                     <?php
-                    $sql = $mysqli->query("SELECT disciplina.nomeDisciplina, disciplina.descricaoDisciplina, disciplina.urlFotoDisciplina, disciplina.urlThumbDisciplina, disciplina.tagsDisciplina, disciplina.urlSiteDisciplina FROM disciplina INNER JOIN professordisciplina ON professordisciplina.idDisciplina=disciplina.id WHERE professordisciplina.idProfessor=" . $idProfessor);
+                    $sql = $mysqli->query("SELECT disciplina.nomeDisciplina, disciplina.descricaoDisciplina, disciplina.urlFotoDisciplina, disciplina.urlThumbDisciplina, disciplina.tagsDisciplina, disciplina.urlSiteDisciplina FROM disciplina INNER JOIN professor_disciplina ON professor_disciplina.idDisciplina=disciplina.id WHERE professor_disciplina.idProfessor=" . $idProfessor);
                     $i = 0;
                     while ($row = $sql->fetch_array()) {
                         $nomeDisciplina = $row['nomeDisciplina'];
