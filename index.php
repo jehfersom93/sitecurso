@@ -425,31 +425,21 @@ while ($row = $sql->fetch_array()) {
                     <div class="row">
 
                         <div class="twelve columns">
-
-                            <ul class="social-links">
+                            <br>
+                            <ul class="social">
                                 <?php
-                                if (!is_null($facebookProfessor) || !empty($facebookProfessor)) {
-                                    echo "<li><a href='" . $facebookProfessor . "' target='_blank'><i class='fa fa-facebook'></i></a></li>";
-                                }
-                                if (!is_null($twitterProfessor) || !empty($twitterProfessor)) {
-                                    echo "<li><a href='" . $twitterProfessor . "' target='_blank'><i class='fa fa-twitter'></i></a></li>";
-                                }
-                                if (!is_null($googleProfessor) || !empty($googleProfessor)) {
-                                    echo "<li><a href='" . $googleProfessor . "' target='_blank'><i class='fa fa-google-plus'></i></a></li>";
-                                }
-                                if (!is_null($instagramProfessor) || !empty($instagramProfessor)) {
-                                    echo "<li><a href='" . $instagramProfessor . "' target='_blank'><i class='fa fa-instagram'></i></a></li>";
-                                }
+                                echo '<a href="http://cnecsan.cnec.br/"><img src="logo-cnec.png" width="35" height="35" /></a>';
                                 ?>
                             </ul>
+
                             <ul class="copyright">
-                                <li>©2017 Todos os direitos reservados| CNEC-IESA Santo Ângelo. </li>
+                                <li>©2017 Todos os direitos reservados | Instituto Cenecista de Ensino Superior de Santo Angelo. </li>
                                 <li>Desenvolvido por <a title="Styleshout" href="http://kraft.ads.cnecsan.edu.br/~jefersonrodrigues/" target='_blank'>Jeferson Rodrigues</a> e <a title="Styleshout" href="http://kraft.ads.cnecsan.edu.br/~matheuscavallini/" target='_blank'>Matheus Cavallini</a></li>   
                             </ul>
 
                         </div>
 
-                        <div id="go-top"><a class="smoothscroll" title="Voltar para o topo" href="#home"><i class="icon-up-open"></i></a></div>
+                        <div id="go-top"><a style=" right: 100px; " class="smoothscroll" title="Voltar para o topo" href="#home"><i class="icon-up-open"></i></a></div>
 
                     </div>
 
