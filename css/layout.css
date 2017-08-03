@@ -139,7 +139,7 @@ header .scrolldown a:hover { color: #11ABB0; }
    left: 0;
    top: 0;
 }
-.opaque { background-color: #333; }
+.opaque { background-color: #6ed7f5; }
 
 /* hide toggle button */
 #nav-wrap > a.mobile-btn { display: none; }
@@ -178,8 +178,8 @@ ul#nav li a {
 }
 
 ul#nav li a:active { background-color: transparent !important; }
-ul#nav li.current a { color: #F06000; }
-ul#nav li a:hover { background-color: transparent !important; color: orange }
+ul#nav li.current a { color: #17347c; background-color: transparent !important; }
+ul#nav li a:hover { background-color: transparent !important; color: #345cbf }
 
 
 /* ------------------------------------------------------------------ */
