@@ -71,7 +71,6 @@ while ($row = $sql->fetch_array()) {
     <!-- Favicons
          ================================================== -->
     <link rel="shortcut icon" href="favicon.png" >
-    
 
     <script src="js/login.js"></script>
 
@@ -104,7 +103,6 @@ while ($row = $sql->fetch_array()) {
         <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="modalLogin" aria-hidden="true" style="display: none;">
             <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Area do Professor</h1><br>
                     <h1>Área do Professor</h1><br>
                     <form>
                         <input id="txtEmail" type="text" placeholder="E-mail">
@@ -345,8 +343,6 @@ while ($row = $sql->fetch_array()) {
                     ?>
 
                 </div>
-                <!-- Modal Popup
-                     --------------------------------------------------------------- -->
                 <!-- Modal Popup -->
 
                 <?php
@@ -466,13 +462,10 @@ while ($row = $sql->fetch_array()) {
                             </ul>
 
                             <ul class="copyright">
-<<<<<<< HEAD
                                 <<<<<<< HEAD
                                 <li>©2017 Todos os direitos reservados | Instituto Cenecista de Ensino Superior de Santo Ângelo. </li>
-=======
                                 =======
                                 <li>©2017 Todos os direitos reservados | Instituto Cenecista de Ensino Superior de Santo Angelo. </li>
->>>>>>> 17aa178e47d5a17cd70f0832a27d69611d0c02e8
                                 >>>>>>> 17aa178e47d5a17cd70f0832a27d69611d0c02e8
                                 <li>Desenvolvido por <a title="Styleshout" href="http://kraft.ads.cnecsan.edu.br/~jefersonrodrigues/" target='_blank'>Jeferson Rodrigues</a> e <a title="Styleshout" href="http://kraft.ads.cnecsan.edu.br/~matheuscavallini/" target='_blank'>Matheus Cavallini</a></li>   
                             </ul>
