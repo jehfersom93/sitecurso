@@ -72,6 +72,7 @@ while ($row = $sql->fetch_array()) {
          ================================================== -->
     <link rel="shortcut icon" href="favicon.png" >
     
+
     <script src="js/login.js"></script>
 
     <script src="js/login.js"></script>
@@ -104,6 +105,7 @@ while ($row = $sql->fetch_array()) {
             <div class="modal-dialog">
                 <div class="loginmodal-container">
                     <h1>Area do Professor</h1><br>
+                    <h1>Área do Professor</h1><br>
                     <form>
                         <input id="txtEmail" type="text" placeholder="E-mail">
                         <input id="txtSenha" type="password" name="pass" placeholder="Senha">
@@ -345,6 +347,7 @@ while ($row = $sql->fetch_array()) {
                 </div>
                 <!-- Modal Popup
                      --------------------------------------------------------------- -->
+                <!-- Modal Popup -->
 
                 <?php
                 $sql = $mysqli->query("SELECT disciplina.nomeDisciplina, disciplina.descricaoDisciplina, disciplina.urlFotoDisciplina, disciplina.urlThumbDisciplina, disciplina.tagsDisciplina, disciplina.urlSiteDisciplina FROM disciplina INNER JOIN professor_disciplina ON professor_disciplina.idDisciplina=disciplina.id WHERE professor_disciplina.idProfessor=" . $idProfessor);
@@ -464,10 +467,13 @@ while ($row = $sql->fetch_array()) {
 
                             <ul class="copyright">
 <<<<<<< HEAD
+                                <<<<<<< HEAD
                                 <li>©2017 Todos os direitos reservados | Instituto Cenecista de Ensino Superior de Santo Ângelo. </li>
 =======
+                                =======
                                 <li>©2017 Todos os direitos reservados | Instituto Cenecista de Ensino Superior de Santo Angelo. </li>
 >>>>>>> 17aa178e47d5a17cd70f0832a27d69611d0c02e8
+                                >>>>>>> 17aa178e47d5a17cd70f0832a27d69611d0c02e8
                                 <li>Desenvolvido por <a title="Styleshout" href="http://kraft.ads.cnecsan.edu.br/~jefersonrodrigues/" target='_blank'>Jeferson Rodrigues</a> e <a title="Styleshout" href="http://kraft.ads.cnecsan.edu.br/~matheuscavallini/" target='_blank'>Matheus Cavallini</a></li>   
                             </ul>
 
