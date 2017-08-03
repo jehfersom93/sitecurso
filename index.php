@@ -9,6 +9,7 @@ while ($row = $sql->fetch_array()) {
     $twitterProfessor = $row['twitterProfessor'];
     $googleProfessor = $row['googleProfessor'];
     $instagramProfessor = $row['instagramProfessor'];
+    $linkedinProfessor = $row['linkedinProfessor'];
     $urlFotoProfessor = $row['urlFotoProfessor'];
     $urlCapaProfessor = $row['urlCapaProfessor'];
     $cssStyleProfessor = $row['cssStyleProfessor'];
@@ -33,8 +34,10 @@ while ($row = $sql->fetch_array()) {
 
     <!-- CSS
 ================================================== -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/login.css">
     <?php
     if (!is_null($cssStyleProfessor) || !empty($cssStyleProfessor)) {
         echo "<link rel='stylesheet' href='css/cores/" . $cssStyleProfessor . "'>";
@@ -52,7 +55,7 @@ while ($row = $sql->fetch_array()) {
             if (!is_null($urlCapaProfessor) || !empty($urlCapaProfessor)) {
                 echo "background: #161415 url(" . $urlCapaProfessor . ") no-repeat top center;";
             } else {
-                echo "background: #161416 url(images/header-background_1.jpg) no-repeat top center;";
+                echo "background: #161416 url(images/header-background.jpg) no-repeat top center;";
             }
             ?>
         }
@@ -69,6 +72,8 @@ while ($row = $sql->fetch_array()) {
          ================================================== -->
     <link rel="shortcut icon" href="favicon.png" >
 
+    <script src="js/login.js"></script>
+
 </head>
 
 <body>
@@ -79,20 +84,38 @@ while ($row = $sql->fetch_array()) {
 
         <nav id="nav-wrap">
 
-            <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Mostrar Navegação</a>
-            <a class="mobile-btn" href="#" title="Hide navigation">Esconder Navegação</a>
+            <a class="mobile-btn" href="#nav-wrap" title="Mostrar Navegação">Mostrar Navegação</a>
+            <a class="mobile-btn" href="#" title="Esconder Navegação">Esconder Navegação</a>
 
             <ul id="nav" class="nav">
                 <li class="current"><a class="smoothscroll" href="#home">Home</a></li>
                 <li><a class="smoothscroll" href="#about">Perfil</a></li>
                 <li><a class="smoothscroll" href="#resume">Currículo</a></li>
                 <li><a class="smoothscroll" href="#portfolio">Disciplinas</a></li>
+                <li><a class="smoothscroll" href="#portfolio">Projetos</a></li>
                 <li><a class="smoothscroll" href="#contact">Contato</a></li>
+                <li><a class="smoothscroll" href="javascript:;" data-toggle="modal" data-target="#login-modal">Acesso Professor</a></li>
             </ul> <!-- end #nav -->
-
         </nav> <!-- end #nav-wrap -->
 
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="modalLogin" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="loginmodal-container">
+                    <h1>Area do Professor</h1><br>
+                    <form>
+                        <input id="txtEmail" type="text" placeholder="E-mail">
+                        <input id="txtSenha" type="password" name="pass" placeholder="Senha">
+                        <input type="button" name="login" class="login loginmodal-submit" value="Login">
+                    </form>
+                    <div class="login-help">
+                        <a href="javascript:;">Esqueceu a senha?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row banner">
+            <img src="Logo-IESA.png" width="400" height="400">
             <div class="banner-text">
                 <h1 class="responsive-headline"><?php echo $nomeProfessor ?></h1>
                 <hr />
@@ -109,6 +132,9 @@ while ($row = $sql->fetch_array()) {
                     }
                     if (!is_null($instagramProfessor) || !empty($instagramProfessor)) {
                         echo "<li><a href='" . $instagramProfessor . "' target='_blank'><i class='fa fa-instagram'></i></a></li>";
+                    }
+                    if (!is_null($instagramProfessor) || !empty($instagramProfessor)) {
+                        echo "<li><a href='" . $linkedinProfessor . "' target='_blank'><i class='fa fa-linkedin'></i></a></li>";
                     }
                     ?>
                 </ul>
@@ -427,31 +453,21 @@ while ($row = $sql->fetch_array()) {
                     <div class="row">
 
                         <div class="twelve columns">
-
-                            <ul class="social-links">
+                            <br>
+                            <ul class="social">
                                 <?php
-                                if (!is_null($facebookProfessor) || !empty($facebookProfessor)) {
-                                    echo "<li><a href='" . $facebookProfessor . "' target='_blank'><i class='fa fa-facebook'></i></a></li>";
-                                }
-                                if (!is_null($twitterProfessor) || !empty($twitterProfessor)) {
-                                    echo "<li><a href='" . $twitterProfessor . "' target='_blank'><i class='fa fa-twitter'></i></a></li>";
-                                }
-                                if (!is_null($googleProfessor) || !empty($googleProfessor)) {
-                                    echo "<li><a href='" . $googleProfessor . "' target='_blank'><i class='fa fa-google-plus'></i></a></li>";
-                                }
-                                if (!is_null($instagramProfessor) || !empty($instagramProfessor)) {
-                                    echo "<li><a href='" . $instagramProfessor . "' target='_blank'><i class='fa fa-instagram'></i></a></li>";
-                                }
+                                echo '<a href="http://cnecsan.cnec.br/"><img src="logo-cnec.png" width="35" height="35" /></a>';
                                 ?>
                             </ul>
+
                             <ul class="copyright">
-                                <li>©2017 Todos os direitos reservados| CNEC-IESA Santo Ângelo. </li>
+                                <li>©2017 Todos os direitos reservados | Instituto Cenecista de Ensino Superior de Santo Ângelo. </li>
                                 <li>Desenvolvido por <a title="Styleshout" href="http://kraft.ads.cnecsan.edu.br/~jefersonrodrigues/" target='_blank'>Jeferson Rodrigues</a> e <a title="Styleshout" href="http://kraft.ads.cnecsan.edu.br/~matheuscavallini/" target='_blank'>Matheus Cavallini</a></li>   
                             </ul>
 
                         </div>
 
-                        <div id="go-top"><a class="smoothscroll" title="Voltar para o topo" href="#home"><i class="icon-up-open"></i></a></div>
+                        <div id="go-top"><a style=" right: 100px; " class="smoothscroll" title="Voltar para o topo" href="#home"><i class="icon-up-open"></i></a></div>
 
                     </div>
 
@@ -463,6 +479,7 @@ while ($row = $sql->fetch_array()) {
                 <script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
                 <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
 
+                <script src="js/bootstrap.min.js"></script>
                 <script src="js/jquery.flexslider.js"></script>
                 <script src="js/waypoints.js"></script>
                 <script src="js/jquery.fittext.js"></script>
