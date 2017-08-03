@@ -296,11 +296,7 @@ while ($row = $sql->fetch_array()) {
                     $i = 0;
                     while ($row = $sql->fetch_array()) {
                         $nomeDisciplina = $row['nomeDisciplina'];
-                        $descricaoDisciplina = $row['descricaoDisciplina'];
-                        $tagsDisciplina = $row['tagsDisciplina'];
-                        $urlFotoDisciplina = $row['urlFotoDisciplina'];
                         $urlThumbDisciplina = $row['urlThumbDisciplina'];
-                        $urlSiteDisciplina = $row['urlSiteDisciplina'];
                         echo "<div class='columns portfolio-item'>";
                         echo "<div class='item-wrap'>";
                         echo "<a href='#modal-" . $i . "' title=" . $nomeDisciplina . ">";
@@ -323,14 +319,20 @@ while ($row = $sql->fetch_array()) {
                      --------------------------------------------------------------- -->
 
                 <?php
-                $j = 0;
+                $sql = $mysqli->query("SELECT disciplina.nomeDisciplina, disciplina.descricaoDisciplina, disciplina.urlFotoDisciplina, disciplina.urlThumbDisciplina, disciplina.tagsDisciplina, disciplina.urlSiteDisciplina FROM disciplina INNER JOIN professor_disciplina ON professor_disciplina.idDisciplina=disciplina.id WHERE professor_disciplina.idProfessor=" . $idProfessor);
+                $i = 0;
+                while ($row = $sql->fetch_array()) {
+                    $nomeDisciplina = $row['nomeDisciplina'];
+                    $descricaoDisciplina = $row['descricaoDisciplina'];
+                    $tagsDisciplina = $row['tagsDisciplina'];
+                    $urlSiteDisciplina = $row['urlSiteDisciplina'];
+                    $urlFotoDisciplina = $row['urlFotoDisciplina'];
 
-                if (is_null($tagsDisciplina) || empty($tagsDisciplina)) {
-                    $tagsDisciplina = "Sem tags";
-                }
+                    if (is_null($tagsDisciplina) || empty($tagsDisciplina)) {
+                        $tagsDisciplina = "Sem tags";
+                    }
 
-                while ($j <= $i) {
-                    echo "<div id='modal-" . $j . "' class='popup-modal mfp-hide'>";
+                    echo "<div id='modal-" . $i . "' class='popup-modal mfp-hide'>";
                     echo "<img class='scale-with-grid' src='" . $urlFotoDisciplina . "' alt='' />";
                     echo "<div class='description-box'>";
                     echo "<h4>" . $nomeDisciplina . "</h4>";
@@ -342,7 +344,7 @@ while ($row = $sql->fetch_array()) {
                     echo "<a class='popup-modal-dismiss'>Fechar</a>";
                     echo "</div>";
                     echo "</div>";
-                    $j++;
+                    $i++;
                 }
                 ?>
 
