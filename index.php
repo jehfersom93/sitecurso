@@ -462,11 +462,7 @@ while ($row = $sql->fetch_array()) {
                             </ul>
 
                             <ul class="copyright">
-                                <<<<<<< HEAD
                                 <li>©2017 Todos os direitos reservados | Instituto Cenecista de Ensino Superior de Santo Ângelo. </li>
-                                =======
-                                <li>©2017 Todos os direitos reservados | Instituto Cenecista de Ensino Superior de Santo Angelo. </li>
-                                >>>>>>> 17aa178e47d5a17cd70f0832a27d69611d0c02e8
                                 <li>Desenvolvido por <a title="Styleshout" href="http://kraft.ads.cnecsan.edu.br/~jefersonrodrigues/" target='_blank'>Jeferson Rodrigues</a> e <a title="Styleshout" href="http://kraft.ads.cnecsan.edu.br/~matheuscavallini/" target='_blank'>Matheus Cavallini</a></li>   
                             </ul>
 
