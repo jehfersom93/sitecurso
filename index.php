@@ -52,10 +52,10 @@ while ($row = $sql->fetch_array()) {
     <style>
         header {
             <?php
-            if (!is_null($urlCapaProfessor) || !empty($urlCapaProfessor)) {
+            if (!is_null($urlCapaProfessor) && !empty($urlCapaProfessor)) {
                 echo "background: #161415 url(" . $urlCapaProfessor . ") no-repeat top center;";
             } else {
-                echo "background: #161416 url(images/header-background.jpg) no-repeat top center;";
+                echo "background: #161416 url(images/padrao-iesa.jpg) no-repeat top center;";
             }
             ?>
         }
