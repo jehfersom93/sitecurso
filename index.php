@@ -106,7 +106,7 @@ while ($row = $sql->fetch_array()) {
                     <h1>Área do Professor</h1><br>
                     <form>
                         <input id="txtEmail" type="text" placeholder="E-mail">
-                        <input id="txtSenha" type="password" name="pass" placeholder="Senha">
+                        <input id="txtSenha" type="password" placeholder="Senha">
                         <input type="button" name="login" class="login loginmodal-submit" value="Login">
                     </form>
                     <div class="login-help">
