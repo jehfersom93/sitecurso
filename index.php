@@ -261,10 +261,10 @@ while ($row = $sql->fetch_array()) {
                             echo "<p class='info'>" . $row['cargoProfessor'] . " <span>&bull;</span> <em class='date'>" . ucfirst(utf8_encode(strftime("%B de %Y", strtotime($dataInicial)))) . " - " . $dataFinal . "</em></p>";
                         }
 
-                        $sql = $mysqli->query("SELECT descricaoAtividade FROM professor_atividade WHERE idProfessor=" . $idProfessor . " AND idInstituicao=" . $idInstituicao);
+                        $sql = $mysqli->query("SELECT atividadeProfessor FROM professor_instituicao WHERE idProfessor=" . $idProfessor . " AND idInstituicao=" . $idInstituicao);
                         while ($row = $sql->fetch_array()) {
                             echo "<p>";
-                            echo "<i class='fa fa-circle' aria-hidden='true'></i> " . $row['descricaoAtividade'];
+                            echo "<i class='fa fa-circle' aria-hidden='true'></i> " . $row['atividadeProfessor'];
                             echo "</p>";
                         }
                         ?>
