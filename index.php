@@ -1,5 +1,5 @@
 ﻿<?php
-include_once './Util/Connect.php';
+include_once './util/Connect.php';
 $idProfessor = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
 $sql = $mysqli->query("SELECT * FROM professor WHERE id=" . $idProfessor);
@@ -73,8 +73,8 @@ while ($row = $sql->fetch_array()) {
     <link rel="shortcut icon" href="favicon.png" >
 
     <script src="js/login.js"></script>
+    <script src="js/pages/index.js"></script>
 
-    <script src="js/login.js"></script>
 
 </head>
 
@@ -105,9 +105,9 @@ while ($row = $sql->fetch_array()) {
                 <div class="loginmodal-container">
                     <h1>Área do Professor</h1><br>
                     <form>
-                        <input id="txtEmail" type="text" placeholder="E-mail">
-                        <input id="txtSenha" type="password" placeholder="Senha">
-                        <input type="button" name="login" class="login loginmodal-submit" value="Login">
+                        <input id="inputEmail" type="text" placeholder="E-mail">
+                        <input id="inputSenha" type="password" placeholder="Senha">
+                        <input type="button" class="login loginmodal-submit" onclick="efetuarLogin()" value="Login">
                     </form>
                     <div class="login-help">
                         <a href="javascript:;">Esqueceu a senha?</a>
@@ -117,7 +117,7 @@ while ($row = $sql->fetch_array()) {
         </div>
 
         <div class="row banner">
-            <img src="Logo-IESA.png" width="400" height="400">
+            <img src="images/Logo-IESA.png" width="400" height="400">
             <div class="banner-text">
                 <h1 class="responsive-headline"><?php echo $nomeProfessor ?></h1>
                 <hr />
@@ -250,10 +250,10 @@ while ($row = $sql->fetch_array()) {
 
                             setlocale(LC_ALL, 'ptb');
                             $dataInicial = $row['dataInicial'];
-                            if (!is_null($row['dataFinal']) || !empty($row['dataFinal'])) {
-                                $dataFinal = ucfirst(utf8_encode(strftime("%B de %Y", strtotime($row['dataFinal']))));
-                            } else {
+                            if ($row['dataFinal'] == '0000-00-00') {
                                 $dataFinal = "Atual";
+                            } else {
+                                $dataFinal = ucfirst(utf8_encode(strftime("%B de %Y", strtotime($row['dataFinal']))));
                             }
 
                             setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');

@@ -1,6 +1,6 @@
 <?php
 
-include_once './Util/Connect.php';
+include_once '../Util/Connect.php';
 
 $_SG['conectaServidor'] = true;
 $_SG['abreSessao'] = true;
@@ -11,7 +11,9 @@ $_SG['usuario'] = 'sitegeral';
 $_SG['senha'] = 'abracadabra';
 $_SG['banco'] = 'sitegeral';
 $_SG['paginaLogin'] = 'index.php';
-$_SG['tabela'] = 'usuarios';
+$_SG['tabela'] = 'professor';
+
+$erro_sql = false;
 
 if ($_SG['conectaServidor'] == true) {
     $_SG['link'] = mysql_connect($_SG['servidor'], $_SG['usuario'], $_SG['senha']) or die("MySQL: Não foi possível conectar-se ao servidor [" . $_SG['servidor'] . "].");
@@ -23,25 +25,25 @@ if ($_SG['abreSessao'] == true)
 
 function validaUsuario($emailProfessor, $senhaProfessor) {
     global $_SG;
-    $cS = ($_SG['caseSensitive']) ? 'BINARY' : '';
+    //$cS = ($_SG['caseSensitive']) ? 'BINARY' : '';
 
     $nusuario = addslashes($emailProfessor);
     $nsenha = addslashes($senhaProfessor);
 
-    $sql = "SELECT `id`, `nome` FROM `" . $_SG['tabela'] . "` WHERE " . $cS . " `usuario` = '" . $nusuario . "' AND " . $cS . " `senha` = '" . $nsenha . "' LIMIT 1";
+    $sql = "SELECT `id`, `emailProfessor` FROM `" . $_SG['tabela'] . "` WHERE `emailProfessor` = '" . $nusuario . "' AND `senhaProfessor` = '" . $nsenha . "' LIMIT 1";
     $query = mysql_query($sql);
     $resultado = mysql_fetch_assoc($query);
 
     if (empty($resultado)) {
-
+        $erro_sql = true;
+        echo $erro_sql;
         return false;
     } else {
-
         $_SESSION['usuarioID'] = $resultado['id'];
-        $_SESSION['usuarioNome'] = $resultado['nome'];
+        $_SESSION['emailProfessor'] = $resultado['emailProfessor'];
         if ($_SG['validaSempre'] == true) {
-            $_SESSION['usuarioLogin'] = $emailProfessor;
-            $_SESSION['usuarioSenha'] = $senhaProfessor;
+            $_SESSION['professorLogin'] = $emailProfessor;
+            $_SESSION['professorSenha'] = $senhaProfessor;
         }
         return true;
     }
@@ -49,11 +51,11 @@ function validaUsuario($emailProfessor, $senhaProfessor) {
 
 function protegePagina() {
     global $_SG;
-    if (!isset($_SESSION['usuarioID']) OR ! isset($_SESSION['usuarioNome'])) {
+    if (!isset($_SESSION['usuarioID']) OR ! isset($_SESSION['emailProfessor'])) {
         expulsaVisitante();
-    } else if (!isset($_SESSION['usuarioID']) OR ! isset($_SESSION['usuarioNome'])) {
+    } else if (!isset($_SESSION['usuarioID']) OR ! isset($_SESSION['emailProfessor'])) {
         if ($_SG['validaSempre'] == true) {
-            if (!validaUsuario($_SESSION['usuarioLogin'], $_SESSION['usuarioSenha'])) {
+            if (!validaUsuario($_SESSION['professorLogin'], $_SESSION['professorSenha'])) {
                 expulsaVisitante();
             }
         }
@@ -62,6 +64,5 @@ function protegePagina() {
 
 function expulsaVisitante() {
     global $_SG;
-    unset($_SESSION['usuarioID'], $_SESSION['usuarioNome'], $_SESSION['usuarioLogin'], $_SESSION['usuarioSenha']);
-    header("Location: " . $_SG['paginaLogin']);
+    unset($_SESSION['usuarioID'], $_SESSION['emailProfessor'], $_SESSION['professorLogin'], $_SESSION['professorSenha']);
 }
