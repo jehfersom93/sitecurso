@@ -53,7 +53,7 @@ while ($row = $sql->fetch_array()) {
         header {
             <?php
             if (!is_null($urlCapaProfessor) && !empty($urlCapaProfessor)) {
-                echo "background: #161415 url(" . $urlCapaProfessor . ") no-repeat top center;";
+                echo "background: #161415 url(painel/" . $urlCapaProfessor . ") no-repeat top center;";
             } else {
                 echo "background: #161416 url(images/padrao-iesa.jpg) no-repeat top center;";
             }
@@ -70,7 +70,7 @@ while ($row = $sql->fetch_array()) {
 
     <!-- Favicons
          ================================================== -->
-    <link rel="shortcut icon" href="favicon.png" >
+    <link rel="shortcut icon" href="images/favicon.png" >
 
     <script src="js/login.js"></script>
     <script src="js/pages/index.js"></script>
@@ -103,7 +103,8 @@ while ($row = $sql->fetch_array()) {
         <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="modalLogin" aria-hidden="true" style="display: none;">
             <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Área do Professor</h1><br>
+                    <h1>Área do Professor</h1>
+                    <div id="msgLogin" style="color: red"></div><br>
                     <form>
                         <input id="inputEmail" type="text" placeholder="E-mail">
                         <input id="inputSenha" type="password" placeholder="Senha">
@@ -158,7 +159,7 @@ while ($row = $sql->fetch_array()) {
 
             <div class="three columns">
 
-                <img class="profile-pic"  src="<?php echo $urlFotoProfessor ?>" alt="" />
+                <img class="profile-pic"  src="painel/<?php echo $urlFotoProfessor ?>" alt="" />
 
             </div>
 
@@ -457,7 +458,7 @@ while ($row = $sql->fetch_array()) {
                             <br>
                             <ul class="social">
                                 <?php
-                                echo '<a href="http://cnecsan.cnec.br/"><img src="logo-cnec.png" width="35" height="35" /></a>';
+                                echo '<a href="http://cnecsan.cnec.br/"><img src="images/logo-cnec.png" width="35" height="35" /></a>';
                                 ?>
                             </ul>
 

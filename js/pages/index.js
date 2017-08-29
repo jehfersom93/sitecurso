@@ -1,3 +1,5 @@
+var localhost = "/~jefersonrodrigues/sitecurso/";
+
 var efetuarLogin = function () {
     var inputEmail = $('#inputEmail').val();
     var inputSenha = $('#inputSenha').val();
@@ -14,9 +16,10 @@ var efetuarLogin = function () {
         dataType: 'json',
         success: function (data) {
             if (data.sucesso == true) {
-                window.location = "/painel";
+                window.location = $(location).attr('protocol') + '//' + $(location).attr('host') + localhost + 'painel';
             } else if (data.erro == true) {
-                alert("Dados incorretos");
+                $('#msgLogin').html("Dados incorretos!");
+                alert("teste");
             }
         },
     });
