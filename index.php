@@ -39,7 +39,7 @@ while ($row = $sql->fetch_array()) {
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/login.css">
     <?php
-    if (!is_null($cssStyleProfessor) || !empty($cssStyleProfessor)) {
+    if (!is_null($cssStyleProfessor) && !empty($cssStyleProfessor)) {
         echo "<link rel='stylesheet' href='css/cores/" . $cssStyleProfessor . "'>";
     }
     ?>
@@ -91,11 +91,10 @@ while ($row = $sql->fetch_array()) {
 
             <ul id="nav" class="nav">
                 <li class="current"><a class="smoothscroll" href="#home">Home</a></li>
-                <li><a class="smoothscroll" href="#about">Perfil</a></li>
-                <li><a class="smoothscroll" href="#resume">Currículo</a></li>
-                <li><a class="smoothscroll" href="#portfolio">Disciplinas</a></li>
-                <li><a class="smoothscroll" href="#portfolio">Projetos</a></li>
-                <li><a class="smoothscroll" href="#contact">Contato</a></li>
+                <li><a class="smoothscroll" href="#perfil">Perfil</a></li>
+                <li><a class="smoothscroll" href="#curriculo">Currículo</a></li>
+                <li><a class="smoothscroll" href="#disciplinas">Disciplinas</a></li>
+                <li><a class="smoothscroll" href="#contato">Contato</a></li>
                 <li><a class="smoothscroll" href="javascript:;" data-toggle="modal" data-target="#login-modal">Acesso Professor</a></li>
             </ul> <!-- end #nav -->
         </nav> <!-- end #nav-wrap -->
@@ -124,19 +123,19 @@ while ($row = $sql->fetch_array()) {
                 <hr />
                 <ul class="social">
                     <?php
-                    if (!is_null($facebookProfessor) || !empty($facebookProfessor)) {
+                    if (!is_null($facebookProfessor) && !empty($facebookProfessor)) {
                         echo "<li><a href='" . $facebookProfessor . "' target='_blank'><i class='fa fa-facebook'></i></a></li>";
                     }
-                    if (!is_null($twitterProfessor) || !empty($twitterProfessor)) {
+                    if (!is_null($twitterProfessor) && !empty($twitterProfessor)) {
                         echo "<li><a href='" . $twitterProfessor . "' target='_blank'><i class='fa fa-twitter'></i></a></li>";
                     }
-                    if (!is_null($googleProfessor) || !empty($googleProfessor)) {
+                    if (!is_null($googleProfessor) && !empty($googleProfessor)) {
                         echo "<li><a href='" . $googleProfessor . "' target='_blank'><i class='fa fa-google-plus'></i></a></li>";
                     }
-                    if (!is_null($instagramProfessor) || !empty($instagramProfessor)) {
+                    if (!is_null($instagramProfessor) && !empty($instagramProfessor)) {
                         echo "<li><a href='" . $instagramProfessor . "' target='_blank'><i class='fa fa-instagram'></i></a></li>";
                     }
-                    if (!is_null($instagramProfessor) || !empty($instagramProfessor)) {
+                    if (!is_null($instagramProfessor) && !empty($instagramProfessor)) {
                         echo "<li><a href='" . $linkedinProfessor . "' target='_blank'><i class='fa fa-linkedin'></i></a></li>";
                     }
                     ?>
@@ -145,22 +144,31 @@ while ($row = $sql->fetch_array()) {
         </div>
 
         <p class="scrolldown">
-            <a class="smoothscroll" href="#about"><i class="icon-down-circle"></i></a>
+            <a class="smoothscroll" href="#perfil"><i class="icon-down-circle"></i></a>
         </p>
 
     </header> <!-- Header End -->
 
 
-    <!-- About Section
+    <!-- perfil Section
     ================================================== -->
-    <section id="about">
+    <section id="perfil">
 
         <div class="row">
 
             <div class="three columns">
 
-                <img class="profile-pic"  src="painel/<?php echo $urlFotoProfessor ?>" alt="" />
-
+                <?php
+                if (!is_null($urlFotoProfessor) && !empty($urlFotoProfessor)) {
+                    ?>
+                    <img class="profile-pic"  src="painel/<?php echo $urlFotoProfessor ?>" alt="" />
+                    <?php
+                } else {
+                    ?>
+                    <img class="profile-pic"  src="painel/assets/img/default-avatar.png" alt="" />
+                    <?php
+                }
+                ?>
             </div>
 
             <div class="nine columns main-col">
@@ -171,14 +179,14 @@ while ($row = $sql->fetch_array()) {
 
                 <div class="row">
 
-                    <div class="columns contact-details">
+                    <div class="columns contato-details">
                         <br>
                         <h2>Contato</h2>
                         <p class="address">
                             <span><?php echo $nomeProfessor ?></span><br>
                             <span> <?php echo $cidadeProfessor ?></span><br>
                             <?php
-                            if (!is_null($telefoneProfessor) || !empty($telefoneProfessor)) {
+                            if (!is_null($telefoneProfessor) && !empty($telefoneProfessor)) {
                                 echo "<span>" . $telefoneProfessor . " </span><i class='fa fa-whatsapp'></i><br>";
                             }
                             ?>
@@ -192,12 +200,12 @@ while ($row = $sql->fetch_array()) {
 
         </div>
 
-    </section> <!-- About Section End-->
+    </section> <!-- perfil Section End-->
 
 
-    <!-- Resume Section
+    <!-- curriculo Section
     ================================================== -->
-    <section id="resume">
+    <section id="curriculo">
 
         <!-- Education
         ----------------------------------------------- -->
@@ -220,11 +228,17 @@ while ($row = $sql->fetch_array()) {
                 }
                 ?>
 
-                <div>
-                    <h1>
-                        <i class="fa fa-address-card-o" aria-hidden="true"></i><a href="<?php echo $urlCurriculumProfessor ?>"> Currículo Lattes</a>
-                    </h1>
-                </div>
+                <?php
+                if (!is_null($urlCurriculumProfessor) && !empty($urlCurriculumProfessor)) {
+                    ?>
+                    <div>
+                        <h1>
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><a href="<?php echo $urlCurriculumProfessor ?>"> Currículo Lattes</a>
+                        </h1>
+                    </div>
+                    <?php
+                }
+                ?>
             </div> <!-- item end -->
 
         </div> <!-- main-col end -->
@@ -258,7 +272,7 @@ while ($row = $sql->fetch_array()) {
                             }
 
                             setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
-                            echo "<h3>" . $row['nomeInstituicao'] . "</h3>";
+                            echo "<h4>" . $row['nomeInstituicao'] . "</h4>";
                             echo "<p class='info'>" . $row['cargoProfessor'] . " <span>&bull;</span> <em class='date'>" . ucfirst(utf8_encode(strftime("%B de %Y", strtotime($dataInicial)))) . " - " . $dataFinal . "</em></p>";
                         }
 
@@ -276,40 +290,51 @@ while ($row = $sql->fetch_array()) {
             </div>
         </div>
 
-        <!-- Projetos
-        ----------------------------------------------- -->
-        <div class="row projetos">
+        <?php
+        if ($result = $mysqli->query("SELECT descricaoProjeto FROM professor_projeto WHERE idProfessor=" . $idProfessor)) {
+            $row_cnt = $result->num_rows;
+            $result->close();
+        }
+        if ($row_cnt != 0) {
+            ?>
+            <!-- Projetos
+            ----------------------------------------------- -->
+            <div class="row projetos" id="projetos">
 
-            <div class="three columns header-col">
-                <h1><i class="fa fa-paperclip" aria-hidden="true"></i><span>Projetos</span></h1>
+                <div class="three columns header-col">
+                    <h1><i class="fa fa-paperclip" aria-hidden="true"></i><span>Projetos</span></h1>
+                </div>
+
+                <div class="nine columns main-col">
+
+                    <div class="row item">
+
+                        <div class="twelve columns">
+
+                            <?php
+                            $sql = $mysqli->query("SELECT * FROM professor_projeto WHERE idProfessor=" . $idProfessor);
+                            while ($row = $sql->fetch_array()) {
+                                echo "<h4>" . $row['tituloProjeto'] . "</h4>";
+                                echo "<p>";
+                                echo "<i class='fa fa-circle' aria-hidden='true'></i> " . $row['descricaoProjeto'];
+                                echo "</p>";
+                            }
+                            ?>
+
+                        </div>
+
+                    </div> <!-- item end -->
+                </div>
             </div>
-
-            <div class="nine columns main-col">
-
-                <div class="row item">
-
-                    <div class="twelve columns">
-
-                        <?php
-                        $sql = $mysqli->query("SELECT descricaoProjeto FROM professor_projeto WHERE idProfessor=" . $idProfessor);
-                        while ($row = $sql->fetch_array()) {
-                            echo "<p>";
-                            echo "<i class='fa fa-circle' aria-hidden='true'></i> " . $row['descricaoProjeto'];
-                            echo "</p>";
-                        }
-                        ?>
-
-                    </div>
-
-                </div> <!-- item end -->
-            </div>
-        </div>
-    </section> <!-- Resume Section End-->
+            <?php
+        }
+        ?>
+    </section> <!-- curriculo Section End-->
 
 
-    <!-- Portfolio Section
+    <!-- disciplinas Section
     ================================================== -->
-    <section id="portfolio">
+    <section id="disciplinas">
 
         <div class="row">
 
@@ -317,8 +342,8 @@ while ($row = $sql->fetch_array()) {
 
                 <h1>Disciplinas do professor</h1>
 
-                <!-- portfolio-wrapper -->
-                <div id="portfolio-wrapper" class="bgrid-quarters s-bgrid-thirds cf">
+                <!-- disciplinas-wrapper -->
+                <div id="disciplinas-wrapper" class="bgrid-quarters s-bgrid-thirds cf">
 
                     <?php
                     $sql = $mysqli->query("SELECT disciplina.nomeDisciplina, disciplina.descricaoDisciplina, disciplina.urlFotoDisciplina, disciplina.urlThumbDisciplina, disciplina.tagsDisciplina, disciplina.urlSiteDisciplina FROM disciplina INNER JOIN professor_disciplina ON professor_disciplina.idDisciplina=disciplina.id WHERE professor_disciplina.idProfessor=" . $idProfessor);
@@ -326,12 +351,12 @@ while ($row = $sql->fetch_array()) {
                     while ($row = $sql->fetch_array()) {
                         $nomeDisciplina = $row['nomeDisciplina'];
                         $urlThumbDisciplina = $row['urlThumbDisciplina'];
-                        echo "<div class='columns portfolio-item'>";
+                        echo "<div class='columns disciplinas-item'>";
                         echo "<div class='item-wrap'>";
                         echo "<a href='#modal-" . $i . "' title=" . $nomeDisciplina . ">";
                         echo "<img alt='' src='" . $urlThumbDisciplina . "'>";
                         echo "<div class='overlay'>";
-                        echo "<div class='portfolio-item-meta'>";
+                        echo "<div class='disciplinas-item-meta'>";
                         echo "<h5>" . $nomeDisciplina . "</h5>";
                         echo "</div>";
                         echo "</div>";
@@ -368,7 +393,11 @@ while ($row = $sql->fetch_array()) {
                     echo "<span class='categories'><i class='fa fa-tag'></i>" . $tagsDisciplina . "</span>";
                     echo "</div>";
                     echo "<div class='link-box'>";
-                    echo "<a href='" . $urlSiteDisciplina . "' target='_blank'>Site</a>";
+                    if (!is_null($urlSiteDisciplina) && !empty($urlSiteDisciplina)) {
+                        echo "<a href='" . $urlSiteDisciplina . "' target='_blank'>Site</a>";
+                    } else {
+                        echo "<a href='javascript:;'>Sem Site</a>";
+                    }
                     echo "<a class='popup-modal-dismiss'>Fechar</a>";
                     echo "</div>";
                     echo "</div>";
@@ -376,12 +405,12 @@ while ($row = $sql->fetch_array()) {
                 }
                 ?>
 
-                </section> <!-- Portfolio Section End-->
+                </section> <!-- disciplinas Section End-->
 
 
-                <!-- Contact Section
+                <!-- contato Section
                 ================================================== -->
-                <section id="contact">
+                <section id="contato">
 
                     <div class="row section-head">
 
@@ -404,27 +433,27 @@ while ($row = $sql->fetch_array()) {
                         <div class="eight columns">
 
                             <!-- form -->
-                            <form action="" method="post" id="contactForm" name="contactForm">
+                            <form action="" method="post" id="contatoForm" name="contatoForm">
                                 <fieldset>
 
                                     <div>
-                                        <label for="contactName"> Nome <span class="required">*</span></label>
-                                        <input type="text" value="" size="15" id="contactName" name="contactName">
+                                        <label for="contatoName"> Nome <span class="required">*</span></label>
+                                        <input type="text" value="" size="15" id="contatoName" name="contatoName">
                                     </div>
 
                                     <div>
-                                        <label for="contactEmail"> Email <span class="required">*</span></label>
-                                        <input type="text" value="" size="15" id="contactEmail" name="contactEmail">
+                                        <label for="contatoEmail"> Email <span class="required">*</span></label>
+                                        <input type="text" value="" size="15" id="contatoEmail" name="contatoEmail">
                                     </div>
 
                                     <div>
-                                        <label for="contactSubject"> Assunto </label>
-                                        <input type="text" value="" size="15" id="contactSubject" name="contactSubject">
+                                        <label for="contatoSubject"> Assunto </label>
+                                        <input type="text" value="" size="15" id="contatoSubject" name="contatoSubject">
                                     </div>
 
                                     <div>
-                                        <label for="contactMessage"> Mensagem <span class="required">*</span></label>
-                                        <textarea cols="30" rows="10" id="contactMessage" name="contactMessage"></textarea>
+                                        <label for="contatoMessage"> Mensagem <span class="required">*</span></label>
+                                        <textarea cols="30" rows="10" id="contatoMessage" name="contatoMessage"></textarea>
                                     </div>
 
                                     <div>
@@ -437,15 +466,15 @@ while ($row = $sql->fetch_array()) {
                                 </fieldset>
                             </form> <!-- Form End -->
 
-                            <!-- contact-warning -->
+                            <!-- contato-warning -->
                             <div id="message-warning"> Erro </div>
-                            <!-- contact-success -->
+                            <!-- contato-success -->
                             <div id="message-success">
                                 <i class="fa fa-check"></i> Mensagem enviada!<br>
                             </div>
                         </div>
                     </div>
-                </section> <!-- Contact Section End-->
+                </section> <!-- contato Section End-->
 
 
                 <!-- footer

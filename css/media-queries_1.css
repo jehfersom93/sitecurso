@@ -47,20 +47,20 @@
    }
 
 
-   /* About Section
+   /* perfil Section
    ------------------------------------------------------------------- */
-   #about .profile-pic {
+   #perfil .profile-pic {
       width: 114px;
       height: 114px;
       margin-left: 12px;
    }
-   #about .contact-details { width: 50%; }
-   #about .download { width: 50%; }
+   #perfil .contato-details { width: 50%; }
+   #perfil .download { width: 50%; }
 
-   /* Resume Section
+   /* curriculo Section
    ------------------------------------------------------------------- */
-   #resume h1 { font: 16px/24px 'opensans-bold', sans-serif; }
-   #resume .main-col { padding-right: 5%; }   
+   #curriculo h1 { font: 16px/24px 'opensans-bold', sans-serif; }
+   #curriculo .main-col { padding-right: 5%; }   
 
    /* Testimonials Section
    ------------------------------------------------------------------- */
@@ -80,14 +80,14 @@
       line-height: 66px;
    }
 
-   /* Contact Section
+   /* contato Section
    ------------------------------------------------------------------- */
-   #contact .section-head { margin-bottom: 30px; }
-   #contact .header-col h1:before {
+   #contato .section-head { margin-bottom: 30px; }
+   #contato .header-col h1:before {
       font-size: 66px;
       line-height: 66px;
    }
-   #contact .section-head p.lead { font: 17px/33px opensans-light, sans-serif; }
+   #contato .section-head p.lead { font: 17px/33px opensans-light, sans-serif; }
 
 
 }
@@ -213,27 +213,27 @@
    header .scrolldown { display: none; }
 
 
-   /* About Section
+   /* perfil Section
    -------------------------------------------------------------------- */
-   #about .profile-pic { display: none; }
-   #about .download .button {
+   #perfil .profile-pic { display: none; }
+   #perfil .download .button {
       width: 100%;
       text-align: center;
       padding: 15px 20px;
    }
-   #about .main-col { padding-right: 30px; }
+   #perfil .main-col { padding-right: 30px; }
 
 
-   /* Resume Section
+   /* curriculo Section
    --------------------------------------------------------------------- */
-   #resume .header-col {
+   #curriculo .header-col {
       padding-top: 0;
       margin-bottom: 48px;
       text-align: center;
    }
-   #resume h1 { letter-spacing: 3px; }
-   #resume .main-col { padding-right: 30px; }
-   #resume h3, #resume .info { text-align: center; }
+   #curriculo h1 { letter-spacing: 3px; }
+   #curriculo .main-col { padding-right: 30px; }
+   #curriculo h3, #curriculo .info { text-align: center; }
       
    .bars { width: 100%; }
 
@@ -252,11 +252,11 @@
    #call-to-action p { font-size: 15px; }
 
 
-   /* Portfolio Section
+   /* disciplinas Section
    /* ----------------------------------------------------------------- */
-   #portfolio-wrapper .columns { margin-bottom: 40px; }
+   #disciplinas-wrapper .columns { margin-bottom: 40px; }
    .popup-modal {	max-width: 85%; }
-
+   
 
    /* Testimonials Section
    ----------------------------------------------------------------------- */
@@ -282,33 +282,33 @@
    }
 
 
-   /* contact Section
+   /* contato Section
    ----------------------------------------------------------------------- */
-   #contact { padding-bottom: 66px; }
-   #contact .section-head { margin-bottom: 12px; }
-   #contact .section-head h1 {
+   #contato { padding-bottom: 66px; }
+   #contato .section-head { margin-bottom: 12px; }
+   #contato .section-head h1 {
       font: 16px/24px 'opensans-bold', sans-serif;            
       text-align: center;   
       margin-bottom: 30px;
       text-shadow: 0px 1px 3px rgba(0, 0, 0, 1);
    }  
-   #contact h1 span { display: block; }
-   #contact .header-col { padding-top: 0; }
-   #contact .header-col h1:before { content: none;	}
-   #contact .section-head p.lead { text-align: center;}
+   #contato h1 span { display: block; }
+   #contato .header-col { padding-top: 0; }
+   #contato .header-col h1:before { content: none;	}
+   #contato .section-head p.lead { text-align: center;}
 
    /* form */
-   #contact label {
+   #contato label {
       float: none;
       width: 100%;
    }
-   #contact input,
-   #contact textarea,
-   #contact select {
+   #contato input,
+   #contato textarea,
+   #contato select {
      	margin-bottom: 6px;    	
       width: 100%;
    }
-   #contact button.submit { margin: 30px 0 24px 0; }
+   #contato button.submit { margin: 30px 0 24px 0; }
    #message-warning, #message-success {
       width: 100%;
       margin-left: 0;

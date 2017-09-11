@@ -9,35 +9,35 @@ ul#nav li.current a {
 header .social li a:hover { color: #e21c2b; }
 header .scrolldown a:hover { color: #e21c2b; }
 
-#about {
+#perfil {
     background: #e21c2b;
 }
-#about p { color: white; }
-#about a:hover, #about a:focus { color: #d1d1d1; }
+#perfil p { color: white; }
+#perfil a:hover, #perfil a:focus { color: #d1d1d1; }
 
-#resume a, #resume a:visited  { color: #e21c2b; }
+#curriculo a, #curriculo a:visited  { color: #e21c2b; }
 
-#resume h1 span {
+#curriculo h1 span {
    border-bottom: 3px solid #e21c2b;
    padding-bottom: 6px;
 }
 
 .popup-modal a:hover {	color: #e21c2b; }
 
-#contact {
+#contato {
     background: #be1622;
     color: white;
 }
-#contact a, #contact a:visited  { color: #d1d1d1; }
+#contato a, #contato a:visited  { color: #d1d1d1; }
 
-#contact input:focus,
-#contact textarea:focus,
-#contact select:focus {
+#contato input:focus,
+#contato textarea:focus,
+#contato select:focus {
 	color: #fff;
 	background-color: #e21c2b;
 }
 
-#contact span.required {
+#contato span.required {
 	color: #d1d1d1;
 }
 
