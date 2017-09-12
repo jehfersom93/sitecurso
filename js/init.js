@@ -160,6 +160,7 @@
             if (msg == 'OK') {
                $('#image-loader').fadeOut();
                $('#message-warning').hide();
+               $('#message-erro-email').hide();
                $('#contactForm').fadeOut();
                $('#message-success').fadeIn();   
             }

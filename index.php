@@ -196,6 +196,7 @@ while ($row = $sql->fetch_array()) {
                             }
                             ?>
                             <span><?php echo $emailProfessor ?></span>
+                            <input hidden="" id="emailProfessor" value="<?php echo $emailProfessor ?>" />
                         </p>
 
                     </div>
@@ -453,16 +454,16 @@ while ($row = $sql->fetch_array()) {
 
                                     <div>
                                         <label for="contatoSubject"> Assunto </label>
-                                        <input type="text" value="" size="15" id="contatoSubject" name="contatoSubject">
+                                        <input type="text" value="" size="15" id="contatoAssunto" name="contatoSubject">
                                     </div>
 
                                     <div>
                                         <label for="contatoMessage"> Mensagem <span class="required">*</span></label>
-                                        <textarea cols="30" rows="10" id="contatoMessage" name="contatoMessage"></textarea>
+                                        <textarea cols="30" rows="10" id="contatoMensagem" name="contatoMessage"></textarea>
                                     </div>
 
                                     <div>
-                                        <button class="submit">Enviar</button>
+                                        <button type="button" class="submit" onclick="enviarEmail()">Enviar</button>
                                         <span id="image-loader">
                                             <img alt="" src="images/loader.gif">
                                         </span>
@@ -477,6 +478,8 @@ while ($row = $sql->fetch_array()) {
                             <div id="message-success">
                                 <i class="fa fa-check"></i> Mensagem enviada!<br>
                             </div>
+                            <!-- email inválido -->
+                            <div id="message-erro-email"> E-mail digitado inválido! </div>
                         </div>
                     </div>
                 </section> <!-- contato Section End-->
