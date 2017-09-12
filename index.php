@@ -1,5 +1,10 @@
 ﻿<?php
 include_once './util/Connect.php';
+
+if (!isset($_GET['id'])) {
+    header('Location: sites.php');
+}
+
 $idProfessor = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
 $sql = $mysqli->query("SELECT * FROM professor WHERE id=" . $idProfessor);
