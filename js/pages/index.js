@@ -1,5 +1,20 @@
 var localhost = "/";
 
+$(document).ready(function () {
+    $("#inputEmail").keyup(function (event) {
+        if (event.keyCode == 13) {
+            $("#botaoLogin").click();
+        }
+    });
+
+    $("#inputSenha").keyup(function (event) {
+        if (event.keyCode == 13) {
+            $("#botaoLogin").click();
+        }
+    });
+});
+
+
 var efetuarLogin = function () {
     var inputEmail = $('#inputEmail').val();
     var inputSenha = $('#inputSenha').val();

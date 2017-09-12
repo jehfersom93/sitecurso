@@ -112,7 +112,7 @@ while ($row = $sql->fetch_array()) {
                     <form>
                         <input id="inputEmail" type="text" placeholder="E-mail">
                         <input id="inputSenha" type="password" placeholder="Senha">
-                        <input type="button" class="login loginmodal-submit" onclick="efetuarLogin()" value="Login">
+                        <input type="button" id="botaoLogin" class="login loginmodal-submit" onclick="efetuarLogin()" value="Login">
                     </form>
                     <div class="login-help">
                         <a href="javascript:;">Esqueceu a senha?</a>
@@ -140,7 +140,7 @@ while ($row = $sql->fetch_array()) {
                     if (!is_null($instagramProfessor) && !empty($instagramProfessor)) {
                         echo "<li><a href='" . $instagramProfessor . "' target='_blank'><i class='fa fa-instagram'></i></a></li>";
                     }
-                    if (!is_null($instagramProfessor) && !empty($instagramProfessor)) {
+                    if (!is_null($linkedinProfessor) && !empty($linkedinProfessor)) {
                         echo "<li><a href='" . $linkedinProfessor . "' target='_blank'><i class='fa fa-linkedin'></i></a></li>";
                     }
                     ?>
